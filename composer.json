@@ -1,5 +1,5 @@
 {
-    "name": "phpfui/constantcontact",
+    "name": "pamekar/constantcontact",
     "description": "Object Oriented Wrapper for Constant Contact API V3",
     "minimum-stability": "stable",
     "keywords": ["Constant", "Contact", "API", "V3", "Object Oriented", "Object-Oriented"],
