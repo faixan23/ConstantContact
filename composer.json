@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": "^7.2.5 || ^8.0",
-        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/guzzle": "^6.3",
         "spatie/guzzle-rate-limiter-middleware": "^2.0"
     },
     "require-dev": {
