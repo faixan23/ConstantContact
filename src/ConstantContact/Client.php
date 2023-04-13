@@ -12,31 +12,31 @@ namespace PHPFUI\ConstantContact;
  */
 class Client
 {
-    public string $accessToken = '';
+    public $accessToken = '';
 
-    public string $refreshToken = '';
+    public $refreshToken = '';
 
-    private string $oauth2URL = 'https://authz.constantcontact.com/oauth2/default/v1/token';
+    private $oauth2URL = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 
-    private string $authorizeURL = 'https://authz.constantcontact.com/oauth2/default/v1/authorize';
+    private $authorizeURL = 'https://authz.constantcontact.com/oauth2/default/v1/authorize';
 
-    private string $lastError = '';
+    private $lastError = '';
 
-    private string $body = '';
+    private $body = '';
 
-    private string $host = '';
+    private $host = '';
 
-    private int $statusCode = 200;
+    private $statusCode = 200;
 
-    private array $scopes = [];
+    private $scopes = [];
 
-    private array $validScopes = ['account_read', 'account_update', 'contact_data', 'campaign_data', 'offline_access',];
+    private $validScopes = ['account_read', 'account_update', 'contact_data', 'campaign_data', 'offline_access',];
 
-    private string $next = '';
+    private $next = '';
 
     private $sessionCallback = null;
 
-    private \GuzzleHttp\HandlerStack $guzzleHandler;
+    private $guzzleHandler;
 
     /**
      * Construct a client.
