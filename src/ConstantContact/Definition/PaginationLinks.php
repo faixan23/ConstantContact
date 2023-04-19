@@ -9,7 +9,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class PaginationLinks extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'next' => '\PHPFUI\ConstantContact\Definition\Link',
 
 	];

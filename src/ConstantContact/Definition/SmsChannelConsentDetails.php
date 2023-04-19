@@ -16,7 +16,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class SmsChannelConsentDetails extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'sms_consent_permission' => ['pending_confirmation', 'opt_out', 'explicit'],
 		'consent_type' => ['promotional_sms'],
 		'opt_in_date' => '\PHPFUI\ConstantContact\DateTime',

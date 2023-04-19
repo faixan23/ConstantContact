@@ -4,6 +4,9 @@ namespace PHPFUI\ConstantContact;
 
 class Base
 {
+    public $client;
+    public $urlPath;
+
     public function __construct(\PHPFUI\ConstantContact\Client $client, string $urlPath)
     {
     }

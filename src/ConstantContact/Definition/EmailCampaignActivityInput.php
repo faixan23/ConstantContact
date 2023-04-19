@@ -16,7 +16,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class EmailCampaignActivityInput extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'format_type' => [5],
 		'from_name' => 'string',
 		'from_email' => 'string',
@@ -28,7 +28,7 @@ class EmailCampaignActivityInput extends \PHPFUI\ConstantContact\Definition\Base
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'from_name' => 100,
 		'from_email' => 80,
 		'reply_to_email' => 80,

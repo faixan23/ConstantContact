@@ -10,13 +10,13 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class EmailAddressPost extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'address' => 'string',
 		'permission_to_send' => ['implicit', 'explicit', 'pending_confirmation', 'unsubscribed', 'temp_hold', 'not_set'],
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'address' => 80,
 
 	];

@@ -11,14 +11,14 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class Note extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'note_id' => '\PHPFUI\ConstantContact\UUID',
 		'created_at' => '\PHPFUI\ConstantContact\DateTime',
 		'content' => 'string',
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'content' => 2000,
 
 	];

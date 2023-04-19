@@ -10,7 +10,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class QueryParamObject extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'query_param_key' => 'string',
 		'query_param_value' => 'string',
 

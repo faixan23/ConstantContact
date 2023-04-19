@@ -10,7 +10,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class EmailTestSendInput extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'email_addresses' => 'array',
 		'personal_message' => 'string',
 

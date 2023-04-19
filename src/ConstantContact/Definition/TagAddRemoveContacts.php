@@ -11,14 +11,14 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class TagAddRemoveContacts extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'source' => '\PHPFUI\ConstantContact\Definition\Source',
 		'exclude' => '\PHPFUI\ConstantContact\Definition\Exclude',
 		'tag_ids' => 'array<\PHPFUI\ConstantContact\UUID>',
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'tag_ids' => 50,
 
 	];

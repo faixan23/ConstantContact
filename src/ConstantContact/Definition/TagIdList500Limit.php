@@ -9,12 +9,12 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class TagIdList500Limit extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'tag_ids' => 'array<\PHPFUI\ConstantContact\UUID>',
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'tag_ids' => 500,
 
 	];

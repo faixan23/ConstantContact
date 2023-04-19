@@ -14,7 +14,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class StreetAddressPut extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'kind' => ['home', 'work', 'other'],
 		'street' => 'string',
 		'city' => 'string',
@@ -24,7 +24,7 @@ class StreetAddressPut extends \PHPFUI\ConstantContact\Definition\Base
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'street' => 255,
 		'city' => 50,
 		'state' => 50,

@@ -16,37 +16,37 @@ abstract class Base
 	 * - array&lt;FQN&gt;
 	 * - array of case sensitive string or integer enums
 	 */
-	protected static array $fields = [];
+	protected $fields = [];
 
 	/**
 	 * @var array<string, int> minimum allowed values. Arrays are size, int and float are values, strings are length.
 	 */
-	protected static array $minLength = [];
+	protected $minLength = [];
 
 	/**
 	 * @var array<string, int> maximum allowed values. Arrays are size, int and float are values, strings are length.
 	 */
-	protected static array $maxLength = [];
+	protected $maxLength = [];
 
 	/**
 	 * @var array<string> required fields.
 	 */
-	protected static array $requiredFields = [];
+	protected $requiredFields = [];
 
   /**
    * $var array<string, mixed> the actual object data by field name.
    */
-	private array $data = [];
+	private $data = [];
 
   /**
    * @var array<string, bool> indicates which values are set to reduce data output.
    */
-	private array $setFields = [];
+	private $setFields = [];
 
 	/**
 	 * @var array<string, bool> supported scalars
 	 */
-	private static array $scalars = [
+	private $scalars = [
 		'bool' => true,
 		'float' => true,
 		'int' => true,
@@ -64,18 +64,18 @@ abstract class Base
 				{
 				$field = 'cf:custom_field_name';
 				}
-			$type = static::$fields[$field] ?? null;
+			$type =  $this->fields[$field] ?? null;
 
 			if (! $type)
 				{
 				continue;
 				}
 
-			if (! empty(static::$fields[$field]))
+			if (! empty( $this->fields[$field]))
 				{
 				$this->{$actualField} = $value;
 				}
-			elseif (! \is_array($type) && ! isset(self::$scalars[$type]))
+			elseif (! \is_array($type) && ! isset($this->scalars[$type]))
 				{
 				if (\str_starts_with($type, 'array'))
 					{
@@ -101,7 +101,7 @@ abstract class Base
 			$field = 'cf:custom_field_name';
 			}
 
-		if (! isset(static::$fields[$field]))
+		if (! isset( $this->fields[$field]))
 			{
 			throw new \PHPFUI\ConstantContact\Exception\InvalidField(static::class . "::{$actualField} is not a valid field");
 			}
@@ -122,7 +122,7 @@ abstract class Base
 			{
 			$field = 'cf:custom_field_name';
 			}
-		$expectedType = static::$fields[$field] ?? null;
+		$expectedType =  $this->fields[$field] ?? null;
 
 		if (null === $expectedType)
 			{
@@ -151,7 +151,7 @@ abstract class Base
 					$arrayEnd = \strpos($expectedType, '>');
 
 					$arrayType = \trim(\substr($expectedType, $arrayStart + 2, $arrayEnd - $arrayStart - 2), '\\');
-					$convertToObjects = ! isset(self::$scalars[$arrayType]);
+					$convertToObjects = ! isset($this->scalars[$arrayType]);
 
 					foreach ($value as $index => $element)
 						{
@@ -172,7 +172,7 @@ abstract class Base
 						}
 					}
 				}
-			elseif (! \is_object($value) && ! isset(self::$scalars[$expectedType]))
+			elseif (! \is_object($value) && ! isset($this->scalars[$expectedType]))
 				{
 				$value = new $expectedType($value);
 				}
@@ -182,9 +182,9 @@ abstract class Base
 				}
 			}
 
-		if (isset(static::$minLength[$field]))
+		if (isset($this->minLength[$field]))
 			{
-			$minLength = static::$minLength[$field];
+			$minLength = $this->minLength[$field];
 
 			if ('array' == $type && \str_starts_with($expectedType, 'array'))
 				{
@@ -203,9 +203,9 @@ abstract class Base
 				}
 			}
 
-		if (isset(static::$maxLength[$field]))
+		if (isset($this->maxLength[$field]))
 			{
-			$maxLength = static::$maxLength[$field];
+			$maxLength = $this->maxLength[$field];
 
 			if ('array' == $type && \str_starts_with($expectedType, 'array'))
 				{
@@ -246,7 +246,7 @@ abstract class Base
 		{
 		$result = [];
 
-		foreach (static::$requiredFields as $field)
+		foreach ($this->requiredFields as $field)
 			{
 			if (! empty($this->setFields[$field]))
 				{
@@ -306,6 +306,6 @@ abstract class Base
 	 */
 	public function getfields() : array
 		{
-		return static::$fields;
+		return  $this->fields;
 		}
 	}

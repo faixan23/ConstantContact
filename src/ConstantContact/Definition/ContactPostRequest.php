@@ -22,38 +22,38 @@ namespace PHPFUI\ConstantContact\Definition;
  * @property array<\PHPFUI\ConstantContact\Definition\Note> $notes An array of notes about the contact.
  */
 class ContactPostRequest extends \PHPFUI\ConstantContact\Definition\Base
-	{
-	protected static array $fields = [
-		'email_address' => '\PHPFUI\ConstantContact\Definition\EmailAddressPost',
-		'first_name' => 'string',
-		'last_name' => 'string',
-		'job_title' => 'string',
-		'company_name' => 'string',
-		'create_source' => ['Account', 'Contact'],
-		'birthday_month' => 'int',
-		'birthday_day' => 'int',
-		'anniversary' => 'string',
-		'custom_fields' => 'array<\PHPFUI\ConstantContact\Definition\ContactCustomField>',
-		'phone_numbers' => 'array<\PHPFUI\ConstantContact\Definition\PhoneNumberPut>',
-		'street_addresses' => 'array<\PHPFUI\ConstantContact\Definition\StreetAddressPut>',
-		'list_memberships' => 'array<\PHPFUI\ConstantContact\UUID>',
-		'taggings' => 'array<\PHPFUI\ConstantContact\UUID>',
-		'notes' => 'array<\PHPFUI\ConstantContact\Definition\Note>',
+{
+    protected $fields = [
+        'email_address' => '\PHPFUI\ConstantContact\Definition\EmailAddressPost',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'job_title' => 'string',
+        'company_name' => 'string',
+        'create_source' => ['Account', 'Contact'],
+        'birthday_month' => 'int',
+        'birthday_day' => 'int',
+        'anniversary' => 'string',
+        'custom_fields' => 'array<\PHPFUI\ConstantContact\Definition\ContactCustomField>',
+        'phone_numbers' => 'array<\PHPFUI\ConstantContact\Definition\PhoneNumberPut>',
+        'street_addresses' => 'array<\PHPFUI\ConstantContact\Definition\StreetAddressPut>',
+        'list_memberships' => 'array<\PHPFUI\ConstantContact\UUID>',
+        'taggings' => 'array<\PHPFUI\ConstantContact\UUID>',
+        'notes' => 'array<\PHPFUI\ConstantContact\Definition\Note>',
 
-	];
+    ];
 
-	protected static array $maxLength = [
-		'first_name' => 50,
-		'last_name' => 50,
-		'job_title' => 50,
-		'company_name' => 50,
-		'anniversary' => 10,
-		'custom_fields' => 25,
-		'phone_numbers' => 3,
-		'street_addresses' => 3,
-		'list_memberships' => 50,
-		'taggings' => 50,
-		'notes' => 150,
+    protected $maxLength = [
+        'first_name' => 50,
+        'last_name' => 50,
+        'job_title' => 50,
+        'company_name' => 50,
+        'anniversary' => 10,
+        'custom_fields' => 25,
+        'phone_numbers' => 3,
+        'street_addresses' => 3,
+        'list_memberships' => 50,
+        'taggings' => 50,
+        'notes' => 150,
 
-	];
-	}
+    ];
+}

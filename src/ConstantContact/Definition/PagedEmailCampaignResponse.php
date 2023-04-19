@@ -10,7 +10,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class PagedEmailCampaignResponse extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'_links' => '\PHPFUI\ConstantContact\Definition\PagingLinks',
 		'campaigns' => 'array<\PHPFUI\ConstantContact\Definition\EmailCampaigns>',
 

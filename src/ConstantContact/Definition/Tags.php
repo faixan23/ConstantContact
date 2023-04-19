@@ -10,7 +10,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class Tags extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'tags' => 'array<\PHPFUI\ConstantContact\Definition\Tag>',
 		'_links' => '\PHPFUI\ConstantContact\Definition\PagingLinks',
 

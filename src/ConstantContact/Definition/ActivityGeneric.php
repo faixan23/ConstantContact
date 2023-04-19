@@ -16,7 +16,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class ActivityGeneric extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'activity_id' => 'string',
 		'state' => ['processing', 'completed', 'cancelled', 'failed', 'timed_out'],
 		'created_at' => '\PHPFUI\ConstantContact\DateTime',

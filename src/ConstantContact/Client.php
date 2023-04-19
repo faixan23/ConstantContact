@@ -2,6 +2,8 @@
 
 namespace PHPFUI\ConstantContact;
 
+use Illuminate\Support\Facades\Log;
+
 /**
  * The Client class needs to store authentication information between PHP sessions in order to function correctly.  The class defaults to normal PHP $_SESSION handling,
  * but you can specify a callback via **setSessionCallback** to provide a different persistence model. The callback function signature is:
@@ -38,6 +40,10 @@ class Client
 
     private $guzzleHandler;
 
+    public $clientAPIKey;
+    public $clientSecret;
+    public $redirectURI;
+
     /**
      * Construct a client.
      *
@@ -45,6 +51,10 @@ class Client
      */
     public function __construct(string $clientAPIKey, string $clientSecret, string $redirectURI, bool $PKCE = true)
     {
+        $this->clientAPIKey = $clientAPIKey;
+        $this->clientSecret = $clientSecret;
+        $this->redirectURI = $redirectURI;
+
         // default to all scopes
         $this->scopes = \array_flip($this->validScopes);
         $this->host = $_SERVER['HTTP_HOST'] ?? '';
@@ -279,6 +289,7 @@ class Client
 
             return $this->process($response);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('[ConstantContact] ' . $e->getMessage());
             $this->lastError = $e->getMessage();
             $this->statusCode = $e->getResponse()->getStatusCode();
         }
@@ -299,6 +310,7 @@ class Client
 
             return $this->statusCode >= 200 && $this->statusCode < 300;
         } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('[ConstantContact] ' . $e->getMessage());
             $this->lastError = $e->getMessage();
             $this->statusCode = $e->getResponse()->getStatusCode();
         }
@@ -326,6 +338,7 @@ class Client
 
             return $this->process($response);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('[ConstantContact] ' . $e->getMessage());
             $this->lastError = $e->getMessage();
             $this->statusCode = $e->getResponse()->getStatusCode();
         }
@@ -347,6 +360,7 @@ class Client
 
             return $this->process($response);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('[ConstantContact] ' . $e->getMessage());
             $this->lastError = $e->getMessage();
             $this->statusCode = $e->getResponse()->getStatusCode();
         }
@@ -354,7 +368,7 @@ class Client
         return [];
     }
 
-    private function exec(\CurlHandle $ch): bool
+    private function exec($ch): bool
     {
         \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -384,7 +398,7 @@ class Client
         return false;
     }
 
-    private function setAuthorization(\CurlHandle $ch): void
+    private function setAuthorization($ch): void
     {
         // Set authorization header
         // Make string of "API_KEY:SECRET"

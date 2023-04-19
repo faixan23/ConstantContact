@@ -11,14 +11,14 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class ListInput extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'name' => 'string',
 		'favorite' => 'bool',
 		'description' => 'string',
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'name' => 255,
 
 	];

@@ -17,7 +17,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class PlanInfo extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'plan_type' => ['TRIAL', 'GOOD', 'BETTER', 'BEST', 'LITE'],
 		'billing_day_of_month' => 'int',
 

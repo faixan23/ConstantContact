@@ -40,7 +40,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class EmailCampaigns extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'campaign_id' => 'string',
 		'created_at' => '\PHPFUI\ConstantContact\DateTime',
 		'current_status' => ['Draft', 'Scheduled', 'Executing', 'Done', 'Error', 'Removed'],
@@ -51,7 +51,7 @@ class EmailCampaigns extends \PHPFUI\ConstantContact\Definition\Base
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'name' => 80,
 
 	];

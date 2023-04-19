@@ -10,18 +10,18 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class TagPost extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'name' => 'string',
 		'tag_source' => 'string',
 
 	];
 
-	protected static array $minLength = [
+	protected $minLength = [
 		'name' => 1,
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'name' => 255,
 
 	];

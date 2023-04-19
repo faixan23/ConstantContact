@@ -13,7 +13,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class ContactsExport extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'contact_ids' => 'array<\PHPFUI\ConstantContact\UUID>',
 		'list_ids' => 'array<\PHPFUI\ConstantContact\UUID>',
 		'segment_id' => 'int',
@@ -22,7 +22,7 @@ class ContactsExport extends \PHPFUI\ConstantContact\Definition\Base
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'contact_ids' => 500,
 		'list_ids' => 50,
 

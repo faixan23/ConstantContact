@@ -10,7 +10,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class BulkEmailCampaignSummariesPage extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'bulk_email_campaign_summaries' => 'array<\PHPFUI\ConstantContact\Definition\BulkEmailCampaignSummary>',
 		'_links' => '\PHPFUI\ConstantContact\Definition\Links2',
 

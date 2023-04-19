@@ -13,7 +13,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class ActivityReference extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'campaign_activity_id' => 'string',
 		'role' => ['primary_email', 'permalink', 'resend'],
 

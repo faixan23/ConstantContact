@@ -14,7 +14,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class PartnerAccountOperationsRequest extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'account_operation_url' => 'string',
 		'account_operation_method' => ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 		'account_operation_payload' => 'string',

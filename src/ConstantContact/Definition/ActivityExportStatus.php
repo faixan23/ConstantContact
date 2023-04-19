@@ -25,7 +25,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class ActivityExportStatus extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'activity_id' => '\PHPFUI\ConstantContact\UUID',
 		'state' => ['initialized', 'processing', 'completed', 'cancelled', 'failed', 'timed_out'],
 		'started_at' => '\PHPFUI\ConstantContact\DateTime',

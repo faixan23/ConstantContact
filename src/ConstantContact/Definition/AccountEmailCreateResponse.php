@@ -11,14 +11,14 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class AccountEmailCreateResponse extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'email_address' => 'string',
 		'email_id' => 'int',
 		'confirm_status' => ['CONFIRMED', 'UNCONFIRMED'],
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'email_address' => 80,
 
 	];

@@ -9,7 +9,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class SegmentName extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'name' => 'string',
 
 	];

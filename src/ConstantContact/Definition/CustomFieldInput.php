@@ -10,13 +10,13 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class CustomFieldInput extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'label' => 'string',
 		'type' => ['string', 'date'],
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'label' => 50,
 
 	];

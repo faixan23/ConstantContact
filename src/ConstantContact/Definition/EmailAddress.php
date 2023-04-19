@@ -18,7 +18,7 @@ namespace PHPFUI\ConstantContact\Definition;
  */
 class EmailAddress extends \PHPFUI\ConstantContact\Definition\Base
 	{
-	protected static array $fields = [
+	protected $fields = [
 		'address' => 'string',
 		'permission_to_send' => ['implicit', 'explicit', 'pending_confirmation', 'unsubscribed', 'temp_hold', 'not_set'],
 		'created_at' => '\PHPFUI\ConstantContact\DateTime',
@@ -32,7 +32,7 @@ class EmailAddress extends \PHPFUI\ConstantContact\Definition\Base
 
 	];
 
-	protected static array $maxLength = [
+	protected $maxLength = [
 		'address' => 80,
 		'opt_out_reason' => 255,
 
