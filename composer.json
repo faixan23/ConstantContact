@@ -1,6 +1,6 @@
 {
-    "name": "pamekar/constantcontact",
-    "description": "Object Oriented Wrapper for Constant Contact API V3",
+    "name": "faixan23/constant-contact",
+    "description": "Object Oriented Wrapper for Constant Contact API V3 for PHP 7.2",
     "minimum-stability": "stable",
     "keywords": ["Constant", "Contact", "API", "V3", "Object Oriented", "Object-Oriented"],
     "homepage": "http://www.phpfui.com",
