@@ -9,6 +9,8 @@ class Base
 
     public function __construct(\PHPFUI\ConstantContact\Client $client, string $urlPath)
     {
+        $this->client = $client;
+        $this->urlPath = $urlPath;
     }
 
     public function success(): bool
