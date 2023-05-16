@@ -2,6 +2,7 @@
 
 namespace PHPFUI\ConstantContact;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Log;
  */
 class Client
 {
+    public $PKCE = true;
+
     public $accessToken = '';
 
     public $refreshToken = '';
@@ -54,6 +57,7 @@ class Client
         $this->clientAPIKey = $clientAPIKey;
         $this->clientSecret = $clientSecret;
         $this->redirectURI = $redirectURI;
+        $this->PKCE = $PKCE;
 
         // default to all scopes
         $this->scopes = \array_flip($this->validScopes);
@@ -150,13 +154,16 @@ class Client
      * After visiting the URL, the account owner is prompted to log in and allow your app to access their account.
      * They are then redirected to your redirect URL with the authorization code appended as a query parameter. e.g.:
      * http://localhost:8888/?code={authorization_code}
+     * 
+     * @param int $userId
      */
-    public function getAuthorizationURL(): string
+    public function getAuthorizationURL(int $userId): string
     {
         $scopes = \implode('+', \array_keys($this->scopes));
 
         $state = \bin2hex(\random_bytes(8));
-        $this->session('PHPFUI\ConstantContact\state', $state);
+        $this->cache($state, $userId);
+
         $params = [
             'response_type' => 'code',
             'client_id' => $this->clientAPIKey,
@@ -170,7 +177,9 @@ class Client
 
             // Store generated random state and code challenge based on RFC 7636
             // https://datatracker.ietf.org/doc/html/rfc7636#section-6.1
-            $this->session('PHPFUI\ConstantContact\code_verifier', $code_verifier);
+
+            $this->cache( $state . '_code_verifier', $code_verifier);
+            // Cache::store('redis')->put("$state" . "_code_verifier", $code_verifier, 600); // 10 Minutes
             $params['code_challenge'] = $code_challenge;
             $params['code_challenge_method'] = 'S256';
         }
@@ -197,9 +206,9 @@ class Client
             return false;
         }
 
-        $expectedState = $this->session('PHPFUI\ConstantContact\state', null);
+        $hasState = $this->cache($parameters['state'], null);
 
-        if (($parameters['state'] ?? 'undefined') != $expectedState) {
+        if ($parameters['state'] && $hasState === null) {
             $this->statusCode = 0;
             $this->lastError = 'state is not correct';
 
@@ -217,8 +226,10 @@ class Client
         ];
 
         if ($this->PKCE) {
-            $params['code_verifier'] = $this->session('PHPFUI\ConstantContact\code_verifier', null);
+            // $params['code_verifier'] = Cache::store('redis')->get($parameters['state'] . "_code_verifier");
+            $params['code_verifier'] = $this->cache($parameters['state'] . "_code_verifier", null);
         }
+
         $url = $this->oauth2URL . '?' . \http_build_query($params);
         \curl_setopt($ch, CURLOPT_URL, $url);
 
@@ -471,23 +482,32 @@ class Client
         return \rtrim(\strtr(\base64_encode($data), '+/', '-_'), '=');
     }
 
-    private function session(string $key, ?string $value): string
+    private function cache(string $key, ?string $value): string
     {
         if ($this->sessionCallback) {
             return \call_user_func($this->sessionCallback, $key, $value);
         }
 
-        if (PHP_SESSION_ACTIVE !== \session_status()) {
-            throw new \PHPFUI\ConstantContact\Exception('session not started. Call session_start() or use \PHPFUI\ConstantContact\Client->setSessionCallback');
-        }
+        // if (PHP_SESSION_ACTIVE !== \session_status()) {
+        //     throw new \PHPFUI\ConstantContact\Exception('session not started. Call session_start() or use \PHPFUI\ConstantContact\Client->setSessionCallback');
+        // }
 
         if (null === $value) {
-            $value = $_SESSION[$key] ?? '';
-            unset($_SESSION[$key]);
+            // $value = $this->getCacheStore()->pull($key, null);
+            $value = $this->getCacheStore()->get($key, null);
+            // $this->getCacheStore()->delete($key);
+            // unset($_SESSION[$key]);
 
             return $value;
         }
 
-        return $_SESSION[$key] = $value;
+        $this->getCacheStore()->put($key, $value, 600); // 10 minutes
+
+        return $value;
+    }
+
+    private function getCacheStore()
+    {
+        return Cache::store('redis');
     }
 }
